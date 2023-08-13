@@ -62,18 +62,21 @@ const handleClick=()=>{
     return (
         <div className="container d-flex flex-column">
             <div className=" d-flex">
-                <div className="col-4  border">
-                    <h1 className="border bg-primary-subtle mb-3 py-3">Backlog</h1>
+                <div className="col-4 border border-3 border-black">
+                    <h1 className="border border-3 border-black bg-primary-subtle mb-3 py-3">Backlog</h1>
                     <div className="container h-75 overflow-y-scroll">
                         {lista &&
                             lista.map((item, idx) =>
                                 item.status === 'backlog' ? (
-                                    <div className="container border my-3 py-3" key={idx}>
+                                    <div className="container border-3 border-black border my-3 py-3" key={idx}>
                                         <h3>{item.title}</h3>
-                                        <p>{new Date(item.date).toLocaleDateString()}</p>
+                                        <div className="d-flex justify-content-center">
+                                            <p className="me-2">Due:</p>
+                                            <p className="text-danger"> {new Date(item.date).toLocaleDateString()}</p>
+                                        </div>
                                         <button
                                             type="button"
-                                                className="mx-1 btn btn-outline-primary btn-sm py-0"
+                                                className="mx-1 btn btn-warning btn-sm py-0"
                                                 onClick={() => updateProject(item._id, 'progress')}
                                         >
                                             start project
@@ -83,18 +86,21 @@ const handleClick=()=>{
                             )}
                     </div>
                 </div>
-                <div className="col-4 border">
-                    <h1 className="border bg-warning-subtle mb-3 py-3">In Progress</h1>
+                <div className="col-4 border border-3 border-black">
+                    <h1 className="border border-3 border-black bg-warning-subtle mb-3 py-3">In Progress</h1>
                     <div className="container h-75 overflow-y-scroll">
                         {lista &&
                             lista.map((item, idx) =>
                                 item.status === 'progress' ? (
-                                    <div className="container border my-3 py-3" key={idx}>
+                                    <div className="container border border-3 border-black my-3 py-3" key={idx}>
                                         <h3>{item.title}</h3>
-                                        <p>{new Date(item.date).toLocaleDateString()}</p>
+                                        <div className="d-flex justify-content-center">
+                                            <p className="me-2">Due:</p>
+                                            <p className="text-danger"> {new Date(item.date).toLocaleDateString()}</p>
+                                        </div>
                                         <button
                                             type="button"
-                                            className="mx-1 btn btn-outline-success btn-sm py-0"
+                                            className="mx-1 btn btn-success btn-sm py-0"
                                             onClick={() => updateProject(item._id, 'completed')}
                                         >
                                             move to completed
@@ -104,15 +110,18 @@ const handleClick=()=>{
                             )}
                     </div>
                 </div>
-                <div className="col-4 border">
-                    <h1 className="border bg-success-subtle mb-3 py-3">Completed</h1>
+                <div className="col-4 border border-3 border-black">
+                    <h1 className="border border-3 border-black bg-success-subtle mb-3 py-3">Completed</h1>
                     <div className="container h-75 overflow-y-scroll">
                         {lista &&
                             lista.map((item, idx) =>
                                 item.status === 'completed' ? (
-                                    <div className="container border my-3 py-3" key={idx}>
+                                    <div className="container border border-3 border-black my-3 py-3" key={idx}>
                                         <h3>{item.title}</h3>
-                                        <p>{new Date(item.date).toLocaleDateString()}</p>
+                                        <div className="d-flex justify-content-center">
+                                            <p className="me-2">Due:</p>
+                                            <p className="text-danger"> {new Date(item.date).toLocaleDateString()}</p>
+                                        </div>
                                         <DeleteButton removeFromDom={removeFromDom} project={item}/>
                                     </div>
                                 ) : null
@@ -120,8 +129,8 @@ const handleClick=()=>{
                     </div>
                 </div>
             </div>
-            <div className='conatiner border d-flex py-3'>
-                <button type="button" className="btn btn-info" onClick={handleClick}>Add New Project</button>
+            <div className='conatiner border border-3 border-black d-flex py-3 ps-5'>
+                <button type="button" className="btn btn-info ms-5" onClick={handleClick}>Add New Project</button>
             </div>
         </div>
     )

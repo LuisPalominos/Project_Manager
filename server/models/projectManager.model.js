@@ -4,12 +4,14 @@
 
 // 1) Importing External Libraries
 const mongoose = require("mongoose");
+const uniqueValidator = require("mongoose-unique-validator");
 
 // 2) Creating Schema for Model (blueprint)
 const ProjectsSchema = new mongoose.Schema(
 {
     title:{
         type: String,
+        unique: [true,"that project is already created"],
         required: [true, "please put project title"],
         minLength: [3, "projects title needs to be 3 characters or more"]
     }, 
@@ -30,6 +32,8 @@ const ProjectsSchema = new mongoose.Schema(
 }, 
     { timestamps: true}
 );
+
+ProjectsSchema.plugin(uniqueValidator,  { message: 'Error: User already registered.' });
 
 // 3) Creating Model using Schema
 const ProjectsModel = mongoose.model("Projects", ProjectsSchema);

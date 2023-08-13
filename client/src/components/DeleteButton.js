@@ -36,7 +36,7 @@ const deleteProject = (id) => {
 // ---------------------------------------------
     return (
         <div className="d-flex align-content-center justify-content-center flex-wrap">
-            <button type="button" className="mx-1 btn btn-outline-danger btn-sm py-0" onClick={(e)=>{handleOnClick()}}>Remove project</button>
+            <button type="button" className="mx-1 btn btn-danger btn-sm py-0" onClick={(e)=>{handleOnClick()}}>Remove project</button>
         </div>
     )
 }

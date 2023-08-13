@@ -53,33 +53,41 @@ const updateErrorMessages = (err) => {
 // III) JSX
 // ---------------------------------------------
     return (
-        <div>
-            <h1 className='text-center'>project Manager</h1>
-            <Link
-                className="mx-1 my-3 btn btn-link btn-sm py-0"
-                to={`/`}
-            >
-                Home
-            </Link>
-            <form className="container text-center" onSubmit={ handleSubmit }>
-                <div className="input-group mb-3 d-flex flex-column align-content-center">
-                    <div className="m-3">
-                        <span className="input-group-text" id="inputGroup-sizing-default">Full Name</span>
-                        <input type="text" name='title' value={title} onChange={  (e) => setTitle(e.target.value) } className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
-                        {_.has(errorMessages, "title") && (
-                        <div className="text-danger small">{errorMessages.title}</div>)}
+        <div className='container'>
+            <h1 className='text-center'>Project Manager</h1>
+            <div className='d-flex justify-content-end me-5 pe-5'>
+                <Link
+                    className="mx-1 my-3 btn btn-link btn-sm py-0"
+                    to={`/`}
+                >
+                    back To Dashboard
+                </Link>
+            </div>
+                <form className="container border border-black border-3 text-center" onSubmit={ handleSubmit }>
+                    <div className="input-group mb-3 d-flex flex-column align-content-center">
+                        <div className="m-3 row g-3 align-items-center">
+                            <div className="col-auto">
+                                <label  className="col-form-label">Project</label>
+                            </div>
+                            <div className="col-auto">
+                                <input type="text" name='title' value={title} onChange={  (e) => setTitle(e.target.value) } className="form-control border border-black" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+                            </div>
+                            {_.has(errorMessages, "title") && (
+                            <div className="text-danger small">{errorMessages.title}</div>)}
+                        </div>
+                        <div className="m-3 row g-3 align-items-center">
+                            <div className="col-auto">
+                                <label  className="col-form-label">Date</label>
+                            </div>
+                            <div className="col-auto">
+                        <input type="text" name='date' placeholder='YY/MM/DD' value={date} onChange={  (e) => setDate(e.target.value) } className="form-control border border-black" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+                            </div>
+                            {_.has(errorMessages, "date") && (
+                            <div className="text-danger small">{errorMessages.date}</div>)}
+                        </div>
+                        <button type="submit" className="btn btn-info rounded border-3 border-dark my-3">Plan Project</button>
                     </div>
-                    <div className="m-3">
-                        <span className="input-group-text" id="inputGroup-sizing-default">Date</span>
-                        <input type="text" name='date' value={date} onChange={  (e) => setDate(e.target.value) } className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
-                        {_.has(errorMessages, "date") && (
-                        <div className="text-danger small">{errorMessages.date}</div>)}
-                    </div>
-                    <div className="d-flex justify-content-between m-3">
-                        <button type="submit" className="btn btn-primary">Plan Project</button>
-                    </div>
-                </div>
-            </form>
+                </form>
         </div>
     )
 }
